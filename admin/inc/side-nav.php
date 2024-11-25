@@ -18,7 +18,7 @@
 				<img src="../img/avt.jpg">
 				<h4>Phong Nguyen</h4>
 			</div>
-			<ul>
+			<ul style="padding-left: 0px;">
 				<li>
 					<a href="Users.php">
 						<i class="fa fa-user" aria-hidden="true"></i>
