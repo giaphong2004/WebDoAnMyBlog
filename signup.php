@@ -17,13 +17,13 @@
     		<h4 class="display-4  fs-1">Create Account</h4><br>
     		<?php if(isset($_GET['error'])){ ?>
     		<div class="alert alert-danger" role="alert">
-			  <?php echo $_GET['error']; ?>
+			  <?php echo htmlspecialchars( $_GET['error']); ?>
 			</div>
 		    <?php } ?>
 
 		    <?php if(isset($_GET['success'])){ ?>
     		<div class="alert alert-success" role="alert">
-			  <?php echo $_GET['success']; ?>
+			  <?php echo htmlspecialchars($_GET['success']); ?>
 			</div>
 		    <?php } ?>
 		  <div class="mb-3">
@@ -31,7 +31,8 @@
 		    <input type="text" 
 		           class="form-control"
 		           name="fname"
-		           value="<?php echo (isset($_GET['fname']))?$_GET['fname']:"" ?>">
+		           value="<?php echo (isset($_GET['fname']))?
+				   htmlspecialchars($_GET['fname']):"" ?>">
 		  </div>
 
 		  <div class="mb-3">
@@ -39,7 +40,8 @@
 		    <input type="text" 
 		           class="form-control"
 		           name="uname"
-		           value="<?php echo (isset($_GET['uname']))?$_GET['uname']:"" ?>">
+		           value="<?php echo (isset($_GET['uname']))?
+				   htmlspecialchars($_GET['uname']):"" ?>">
 		  </div>
 
 		  <div class="mb-3">

@@ -14,7 +14,7 @@
 }
 .u-name {
 	font-size: 20px;
-	padding-left: 17px;
+
 }
 .u-name b {
 	color: #127b8e;
@@ -27,19 +27,13 @@
 .header i:hover {
 	color: #127b8e;
 }
-.user-p {
-	text-align: center;
-	padding-left: 10px;
-	padding-top: 25px;
-}
-.user-p img {
-	width: 100px;
-	border-radius: 50%;
-}
+
+
 .user-p h4 {
 	color: #ccc;
-	padding: 5px 0;
 
+	font-size: 1.2em;
+	padding-left: 20px;
 }
 .side-bar {
 	width: 250px;

@@ -17,24 +17,51 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 	$key = "hhdsfs1263z";
 	
 	include "inc/side-nav.php"; 
+	include_once "data/User.php";
+	include_once "../db_conn.php";
+	$users = getAll($conn);
 	?>
 	<div class="main-table">
-		<table class="table t1">
+		<table class="table t1 table-bordered">
 			<thead class="table-light">
-				<h3>All Users</h3>
+			<h3 class="mb-3">All Users <a href="../signup.php" class="btn btn-success">Add New User</a></h3>
+				<?php if(isset($_GET['error'] )) { ?>
+				<div class="alert alert-warning">
+						<?=htmlspecialchars($_GET['error'])?>
+					</div>
+				<?php } ?>
+
+				<?php if(isset($_GET['success'])) { ?>
+				<div class="alert alert-warning">
+					<?=htmlspecialchars($_GET['success'])?>
+					</div>
+				<?php } ?>
+
+				<?php if($users != 0) { ?>
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">First Name</th>
+					<th scope="col">Full Name</th>
 					<th scope="col">User Name</th>
-					<th scope="col">Password</th>
+					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				
+				<?php foreach ($users as $user ) { ?>
+				<tr>
+					<th scope="row"><?=$user['id']?></th>
+					<td> <?=$user['fname']?> </td>
+					<td> <?=$user['username']?> </td>
+					<td><a href="user-delete.php?user_id=<?=$user['id']?>" class="btn btn-danger">Delete</a></td>
+				</tr>
+				<?php } ?>
 			</tbody>
 		</table>
+				<?php }else{ ?>
+					<div class="alert alert-warning">
+						No User Found
+					</div>
+				<?php } ?>
 	</div>
-		
 		</section>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

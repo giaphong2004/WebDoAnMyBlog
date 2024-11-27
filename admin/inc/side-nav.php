@@ -15,7 +15,7 @@
 	<div class="body">
 		<nav class="side-bar">
 			<div class="user-p">
-				<img src="../img/avt.jpg">
+				
 				<h4><?php echo $_SESSION['username'] ; ?></h4>
 			</div>
 			<ul style="padding-left: 0px;">
