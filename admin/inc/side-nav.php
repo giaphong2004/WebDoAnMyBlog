@@ -1,9 +1,9 @@
 <?php
-    if(isset($key)&&$key == "hhdsfs1263z"){
+if (isset($key) && $key == "hhdsfs1263z") {
 
-    
-    ?>
-<input type="checkbox" id="checkbox">
+
+	?>
+	<input type="checkbox" id="checkbox">
 	<header class="header">
 		<h2 class="u-name">MY <b>BLOG</b>
 			<label for="checkbox">
@@ -12,17 +12,17 @@
 		</h2>
 		<div class="d-flex align-items-center">
 			<i class="fa fa-user" aria-hidden="true"></i> &nbsp;&nbsp;
-			<span><?php echo $_SESSION['username'] ; ?></span>
+			<span><?php echo $_SESSION['username']; ?></span>
 		</div>
 	</header>
 	<div class="body">
 		<nav class="side-bar">
 			<div class="user-p">
-				
-				
+
+
 			</div>
-			<ul id="navList" >
-				<li >
+			<ul id="navList">
+				<li>
 					<a href="Users.php">
 						<i class="fa fa-user" aria-hidden="true"></i>
 						<span>Users</span>
@@ -35,7 +35,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="Category.php">
+					<a href="Category.php?action=quanlydanhmucbaiviet&query=them">
 						<i class="fa fa-comment-o" aria-hidden="true"></i>
 						<span>Category</span>
 					</a>
@@ -67,6 +67,6 @@
 			</ul>
 		</nav>
 		<section class="section-1">
-            <?php
-            }
-            ?>
+			<?php
+}
+?>
