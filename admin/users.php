@@ -15,6 +15,34 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		<link rel="stylesheet" href="../css/style.css">
 	</head>
 
+<<<<<<< HEAD
+				<?php if($users != 0) { ?>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Full Name</th>
+					<th scope="col">User Name</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($users as $user ) { ?>
+				<tr>
+					<th scope="row"><?=$user['id']?></th>
+					<td> <?=$user['fname']?> </td>
+					<td> <?=$user['username']?> </td>
+					<td><a href="user-delete.php?user_id=<?=$user['id']?>" class="btn btn-danger">Delete</a></td>
+					
+				</tr>
+				<?php } ?>
+			</tbody>
+		</table>
+				<?php }else{ ?>
+					<div class="alert alert-warning">
+						No User Found
+					</div>
+				<?php } ?>
+	</div>
+=======
 	<body>
 		<?php
 		$key = "hhdsfs1263z";
@@ -65,6 +93,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				</div>
 			<?php } ?>
 		</div>
+>>>>>>> be1703eead1a0a00333523b3dfe0c8364f39c84a
 		</section>
 		</div>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
