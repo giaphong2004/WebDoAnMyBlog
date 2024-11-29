@@ -1,5 +1,5 @@
 <?php
-
+$mysqli = new mysqli("localhost", "root", "", "myblog_sqli");
 $sName = "localhost";
 $uName = "root";
 $pass = "";
