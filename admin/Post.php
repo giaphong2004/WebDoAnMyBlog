@@ -6,7 +6,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dashboard - Users</title>
+	<title>Dashboard - Post</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../css/side-bar.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -24,7 +24,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 	<div class="main-table">
 		<table class="table t1 table-bordered">
 			<thead class="table-light">
-			<h3 class="mb-3">All Users <a href="../signup.php" class="btn btn-success">Add New User</a></h3>
+			<h3 class="mb-3">All Posts <a href="../signup.php" class="btn btn-success">Add New  </a></h3>
 				<?php if(isset($_GET['error'] )) { ?>
 				<div class="alert alert-warning">
 						<?=htmlspecialchars($_GET['error'])?>
@@ -40,8 +40,8 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				<?php if($users != 0) { ?>
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">Full Name</th>
-					<th scope="col">User Name</th>
+					<th scope="col">Title</th>
+					<th scope="col">Description</th>
 					<th scope="col">Action</th>
 				</tr>
 			</thead>
@@ -67,7 +67,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 
 	<script>
 		var navList = document.getElementById('navList').children;
-		navList.item(0).classList.add("active");
+		navList.item(1).classList.add("active");
 	</script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
