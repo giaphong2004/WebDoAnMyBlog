@@ -17,14 +17,14 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 	$key = "hhdsfs1263z";
 	
 	include "inc/side-nav.php"; 
-	include_once "data/User.php";
+	include_once "data/Post.php";
 	include_once "../db_conn.php";
-	$users = getAll($conn);
+	$posts = getAll($conn);
 	?>
 	<div class="main-table">
 		<table class="table t1 table-bordered">
 			<thead class="table-light">
-			<h3 class="mb-3">All Posts <a href="../signup.php" class="btn btn-success">Add New  </a></h3>
+			<h3 class="mb-3">All Posts <a href="post-add.php" class="btn btn-success">Add New  </a></h3>
 				<?php if(isset($_GET['error'] )) { ?>
 				<div class="alert alert-warning">
 						<?=htmlspecialchars($_GET['error'])?>
@@ -37,7 +37,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 					</div>
 				<?php } ?>
 
-				<?php if($users != 0) { ?>
+				<?php if($posts != 0) { ?>
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Title</th>
@@ -46,19 +46,20 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($users as $user ) { ?>
+				<?php foreach ($posts as $post ) { ?>
 				<tr>
-					<th scope="row"><?=$user['id']?></th>
-					<td> <?=$user['fname']?> </td>
-					<td> <?=$user['username']?> </td>
-					<td><a href="user-delete.php?user_id=<?=$user['id']?>" class="btn btn-danger">Delete</a></td>
+					<th scope="row"><?=$post['post_id']?></th>
+					<td> <?=$post['post_id']?> </td>
+					<td> <?=$post['post_title']?> </td>
+					<td> <?=$post['post_text']?> </td>
+					<td><a href="post-delete.php?post_id=<?=$post['post_id']?>" class="btn btn-danger">Delete</a></td>
 				</tr>
 				<?php } ?>
 			</tbody>
 		</table>
 				<?php }else{ ?>
 					<div class="alert alert-warning">
-						No User Found
+						No Post Found
 					</div>
 				<?php } ?>
 	</div>
