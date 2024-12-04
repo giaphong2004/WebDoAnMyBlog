@@ -10,7 +10,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../css/side-bar.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 	<?php
@@ -41,7 +41,6 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Title</th>
-					<th scope="col">Description</th>
 					<th scope="col">Action</th>
 				</tr>
 			</thead>
@@ -49,10 +48,10 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				<?php foreach ($posts as $post ) { ?>
 				<tr>
 					<th scope="row"><?=$post['post_id']?></th>
-					<td> <?=$post['post_id']?> </td>
-					<td> <?=$post['post_title']?> </td>
-					<td> <?=$post['post_text']?> </td>
-					<td><a href="post-delete.php?post_id=<?=$post['post_id']?>" class="btn btn-danger">Delete</a></td>
+					<td><a href="single_post.php?post_id=<?=$post['post_id']?>"> <?=$post['post_title']?> </a> </td>
+					
+					<td><a href="post-delete.php?post_id=<?=$post['post_id']?>" class="btn btn-danger">Delete</a>
+					<a href="post-edit.php?post_id=<?=$post['post_id']?>" class="btn btn-warning">Edit</a></td>
 				</tr>
 				<?php } ?>
 			</tbody>

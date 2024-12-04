@@ -1,7 +1,7 @@
 <?php 
 session_start();
 
-if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
+if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET['post_id'])) {
  ?>
 <!DOCTYPE html>
 <html>
@@ -22,10 +22,11 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
     include "inc/side-nav.php"; 
     include_once "data/Post.php";
     include_once "../db_conn.php";
-    $posts = getAll($conn);
+    $post_id =  $_GET['post_id'];
+    $post = getById($conn, $post_id);
     ?>
     <div class="main-table ">
-	 	<h3 class="mb-3">Create New Post
+	 	<h3 class="mb-3">Edit Post
 	 		<a href="post.php" class="btn btn-secondary">Posts</a></h3>
 	 	<?php if (isset($_GET['error'])) { ?>	
 	 	<div class="alert alert-warning">
@@ -39,22 +40,23 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		</div>
 	    <?php } ?>
 
-                <form action="req/post-create.php" method="post" enctype="multipart/form-data">
+                <form action="req/post-edit.php" method="post" enctype="multipart/form-data">
     <div class="mb-3">
         <label for="title" class="form-label">Title</label>
-        <input type="text" class="form-control" name="title" value="<?php echo(isset($_GET['uname'])) ? htmlspecialchars($_GET['uname']) : "" ?>">
+        <input type="text" class="form-control" name="title" value="<?=$post['post_title']?>">
     </div>
 
     <div class="mb-3">
         <label for="cover" class="form-label">Cover Image</label>
         <input type="file" class="form-control" name="cover">
+        <img src="../upload/blog/<?=$post['cover_url']?>" style="width:200px; margin-top:15px" >
     </div>
 
     <div class="mb-3">
         <label for="text" class="form-label">Text</label>
-        <textarea class="form-control text" name="text"></textarea>
+        <textarea class="form-control text" name="text"><?=$post['post_text']?></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Edit</button>
 </form>
                 
     </div>

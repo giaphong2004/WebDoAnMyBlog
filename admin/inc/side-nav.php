@@ -55,7 +55,7 @@ if (isset($key) && $key == "hhdsfs1263z") {
 				<li>
 					<a href="Page.php">
 						<i class="fa fa-cog" aria-hidden="true"></i>
-						<span>Page</span>
+						<span>Setting</span>
 					</a>
 				</li>
 				<li>

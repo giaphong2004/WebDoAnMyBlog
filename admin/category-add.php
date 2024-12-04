@@ -24,7 +24,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 	<div class="main-table">
 		<table class="table t1 table-bordered">
 			<thead class="table-light">
-			<h3 class="mb-3">All Categories <a href="Category-add.php" class="btn btn-success">Add New  </a></h3>
+			<h3 class="mb-3">Create New Category <a href="Category.php" class="btn btn-secondary">Category  </a></h3>
 				<?php if(isset($_GET['error'] )) { ?>
 				<div class="alert alert-warning">
 						<?=htmlspecialchars($_GET['error'])?>
@@ -37,30 +37,16 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 					</div>
 				<?php } ?>
 
-				<?php if($categories != 0) { ?>
-				<tr>
-					<th scope="col">ID</th>
-					<th scope="col">Category</th>
-					<th scope="col">Action</th>
-				</tr>
-			</thead>
-			<tbody>
-				<?php foreach ($categories as $categories ) { ?>
-				<tr>
-					<th scope="row"><?=$categories['id']?></th>
-					<td><?=$categories['category']?></td>
-					
-					<td><a href="category-delete.php?id=<?=$categories['id']?>" class="btn btn-danger">Delete</a>
-					<a href="category-edit.php?id=<?=$categories['id']?>" class="btn btn-warning">Edit</a></td>
-				</tr>
-				<?php } ?>
-			</tbody>
-		</table>
-				<?php }else{ ?>
-					<div class="alert alert-warning">
-						No Post Found
-					</div>
-				<?php } ?>
+    <form action="req/Category-create.php" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Category</label>
+            <input type="text" class="form-control" name="category">
+        </div>
+
+       
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+				
 	</div>
 		</section>
 	</div>
