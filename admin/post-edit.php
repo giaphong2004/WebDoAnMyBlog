@@ -24,6 +24,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
     include_once "../db_conn.php";
     $post_id =  $_GET['post_id'];
     $post = getById($conn, $post_id);
+    $categories = getAllCategory($conn);
     ?>
     <div class="main-table ">
 	 	<h3 class="mb-3">Edit Post
@@ -44,7 +45,12 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
     <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input type="text" class="form-control" name="title" value="<?=$post['post_title']?>">
+        <input type="text" class="form-control" name="post_id" value="<?=$post['post_id']?>" hidden>
+        <input type="text" class="form-control" name="cover_url" value="<?=$post['cover_url']?>" hidden>
     </div>
+
+        
+    
 
     <div class="mb-3">
         <label for="cover" class="form-label">Cover Image</label>
@@ -52,9 +58,27 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username']) && isset($_GET[
         <img src="../upload/blog/<?=$post['cover_url']?>" style="width:200px; margin-top:15px" >
     </div>
 
+    
+
     <div class="mb-3">
         <label for="text" class="form-label">Text</label>
         <textarea class="form-control text" name="text"><?=$post['post_text']?></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Category</label>
+        <select name="category" class="form-control" >
+            <?php foreach ($categories as $category) { 
+               
+                ?>
+                
+            <option value="<?=$category['id']?>"
+            <?php echo( $category['id'] == $post['category']) ? "selected" : ""?>>
+                <?=$category['category']?>
+               
+        </option>
+            <?php } ?>
+        </select>
     </div>
     <button type="submit" class="btn btn-primary">Edit</button>
 </form>

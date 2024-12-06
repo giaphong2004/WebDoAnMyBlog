@@ -35,7 +35,7 @@ if (isset($key) && $key == "hhdsfs1263z") {
 					</a>
 				</li>
 				<li>
-					<a href="Category.php?action=quanlydanhmucbaiviet&query=them">
+					<a href="Category.php">
 						<i class="fa fa-comment-o" aria-hidden="true"></i>
 						<span>Category</span>
 					</a>

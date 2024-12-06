@@ -5,19 +5,23 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 
     if(isset($_POST['title']) && 
         isset($_FILES['cover']) && 
+        isset($_POST['category']) && 
         isset($_POST['text'])){
             include "../../db_conn.php";
             $title = $_POST['title'];
             $text = $_POST['text'];
+            $category = $_POST['category'];
 
             if(empty($title)){
                 $em = "Empty fields are not allowed";
                 header("Location: ../post-add.php?error=$em");
                 exit;
-            }else if(empty($title)){
+            }else if(empty($text)){
                 $em = "Empty fields are not allowed";
                 header("Location: ../post-add.php?error=$em");
                 exit;
+            }else if(empty($category)){
+                $category = 0;
             }
 
             $images_name = $_FILES['cover']['name'];
@@ -41,9 +45,9 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
                             $image_path = '../../upload/blog/'.$new_images_name;
                             move_uploaded_file($images_temp, $image_path);
 
-                            $sql = "INSERT INTO post (post_title,post_text,cover_url) VALUES (?,?,?)";
+                            $sql = "INSERT INTO post (post_title,post_text,category,cover_url) VALUES (?,?,?,?)";
                             $stmt = $conn->prepare($sql);
-                            $res = $stmt->execute([$title,$text,$new_images_name]);
+                            $res = $stmt->execute([$title,$text,$category,$new_images_name]);
                         }else{
                             $em = "You can't upload image of this type";
                             header("Location: ../post-add.php?error=$em");
@@ -53,9 +57,9 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
             }
                 
             }else{
-                $sql = "INSERT INTO post (post_title,post_text) VALUES (?,?)";
+                $sql = "INSERT INTO post (post_title,post_text,category) VALUES (?,?,?)";
                 $stmt = $conn->prepare($sql);
-                $res = $stmt->execute([$title,$text]);
+                $res = $stmt->execute([$title,$text,$category]);
               
             }
             if($res){

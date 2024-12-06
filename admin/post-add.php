@@ -20,9 +20,9 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
     $key = "hhdsfs1263z";
     
     include "inc/side-nav.php"; 
-    include_once "data/Post.php";
-    include_once "../db_conn.php";
-    $posts = getAll($conn);
+    include_once "data/Category.php";
+	include_once "../db_conn.php";
+	$categories = getAll($conn);
     ?>
     <div class="main-table ">
 	 	<h3 class="mb-3">Create New Post
@@ -53,6 +53,15 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
     <div class="mb-3">
         <label for="text" class="form-label">Text</label>
         <textarea class="form-control text" name="text"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Category</label>
+        <select name="category" class="form-control" >
+            <?php foreach ($categories as $category) { ?>
+            <option value="<?=$category['id']?>"><?=$category['category']?></option>
+            <?php } ?>
+        </select>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

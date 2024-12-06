@@ -18,8 +18,10 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 	
 	include "inc/side-nav.php"; 
 	include_once "data/Post.php";
+
 	include_once "../db_conn.php";
 	$posts = getAll($conn);
+	
 	?>
 	<div class="main-table">
 		<table class="table t1 table-bordered">
@@ -41,15 +43,17 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 				<tr>
 					<th scope="col">ID</th>
 					<th scope="col">Title</th>
+					<th scope="col">Category</th>
 					<th scope="col">Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($posts as $post ) { ?>
+				<?php foreach ($posts as $post ) { 
+					$category = getCategory($conn,$post['category']); ?>
 				<tr>
 					<th scope="row"><?=$post['post_id']?></th>
 					<td><a href="single_post.php?post_id=<?=$post['post_id']?>"> <?=$post['post_title']?> </a> </td>
-					
+					<td><?=$category['category'] ?></td>
 					<td><a href="post-delete.php?post_id=<?=$post['post_id']?>" class="btn btn-danger">Delete</a>
 					<a href="post-edit.php?post_id=<?=$post['post_id']?>" class="btn btn-warning">Edit</a></td>
 				</tr>

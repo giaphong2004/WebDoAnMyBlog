@@ -17,9 +17,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 	$key = "hhdsfs1263z";
 	
 	include "inc/side-nav.php"; 
-	include_once "data/Category.php";
-	include_once "../db_conn.php";
-	$categories = getAll($conn);
+	
 	?>
 	<div class="main-table">
 		<table class="table t1 table-bordered">
