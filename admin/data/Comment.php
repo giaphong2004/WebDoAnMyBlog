@@ -28,7 +28,24 @@ function getCommentById($conn, $id)
         return 0;
     }
 }
+//đếm comment 
+function CountByPostID($conn, $id)
+{
+    $sql = "SELECT * FROM comment WHere post_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
 
+    return $stmt->rowCount();
+}
+//đếm like
+function likeCountByPostID($conn, $id)
+{
+    $sql = "SELECT * FROM post_like WHere post_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+
+    return $stmt->rowCount();
+}
 //hàm delete
 function deleteCommentById($conn, $id)
 {

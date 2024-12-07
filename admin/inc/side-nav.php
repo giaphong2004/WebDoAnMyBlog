@@ -24,7 +24,7 @@ if (isset($key) && $key == "hhdsfs1263z") {
 			<ul id="navList">
 				<li>
 					<a href="Users.php">
-						<i class="fa fa-user" aria-hidden="true"></i>
+						<i class="fa fa-user-circle-o" aria-hidden="true"></i>
 						<span>Users</span>
 					</a>
 				</li>
@@ -36,24 +36,24 @@ if (isset($key) && $key == "hhdsfs1263z") {
 				</li>
 				<li>
 					<a href="Category.php">
-						<i class="fa fa-comment-o" aria-hidden="true"></i>
+						<i class="fa fa-list" aria-hidden="true"></i>
 						<span>Category</span>
 					</a>
 				</li>
 				<li>
 					<a href="Comment.php">
-						<i class="fa fa-info-circle" aria-hidden="true"></i>
+						<i class="fa fa-comments" aria-hidden="true"></i>
 						<span>Comment</span>
 					</a>
 				</li>
 				<li>
 					<a href="Message.php">
-						<i class="fa fa-info-circle" aria-hidden="true"></i>
+						<i class="fa fa-inbox" aria-hidden="true"></i>
 						<span>Message</span>
 					</a>
 				</li>
 				<li>
-					<a href="Page.php">
+					<a href="Setting.php">
 						<i class="fa fa-cog" aria-hidden="true"></i>
 						<span>Setting</span>
 					</a>
