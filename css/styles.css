@@ -28,6 +28,10 @@
 	width: 70%;
 	
 }
+.comments .Comment span{
+    color: #0088FF;
+}
+
 @media only screen and (max-width: 768px) {
     .aside-main{
         display: none;
@@ -40,3 +44,26 @@
         width: 100%;
     }
 }
+
+.react-btn {
+    font-size: 19px;
+    color:#222;
+    cursor: pointer;
+}
+.react-btn a{
+    text-decoration: none;
+    color:#222;
+    cursor: pointer;
+
+}
+
+.react-btn a:hover{
+    opacity: .8;
+
+}
+
+.react-btn .like:hover{
+    color:#0088FF;
+
+}
+

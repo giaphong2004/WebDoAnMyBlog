@@ -46,6 +46,20 @@ function likeCountByPostID($conn, $id)
 
     return $stmt->rowCount();
 }
+
+function getCommentsByPostID($conn, $id)
+{
+    $sql = "SELECT * FROM comment WHere post_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$id]);
+
+    if ($stmt->rowCount() >= 1) {
+        $data = $stmt->fetchAll();
+        return $data;
+    } else {
+        return 0;
+    }
+}
 //hàm delete
 function deleteCommentById($conn, $id)
 {
