@@ -49,7 +49,7 @@ function likeCountByPostID($conn, $id)
 
 function getCommentsByPostID($conn, $id)
 {
-    $sql = "SELECT * FROM comment WHere post_id = ?";
+    $sql = "SELECT * FROM comment WHere post_id = ? Order by created_at desc";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id]);
 
