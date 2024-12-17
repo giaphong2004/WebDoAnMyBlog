@@ -9,12 +9,12 @@
 	text-decoration: none;
 	color: #fff;
 }
-.main-profile-link:hover{
-	color: #fff;
-}
 
 .main-profile-link a:hover{
-	color: #fff;
+	color: #127b8e;
+}
+.main-profile-link i:hover{
+	color: #127b8e;
 }
 
 .header {
