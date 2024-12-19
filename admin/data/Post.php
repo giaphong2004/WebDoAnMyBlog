@@ -58,6 +58,20 @@ function getAllCategory($conn){
   }
 }
 
+//get5Categoies
+function get5Categoies($conn){
+  $sql = "SELECT * FROM  category LIMIT 6";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+
+  if($stmt->rowCount() >=1 ){
+    $data = $stmt->fetchAll();
+    return $data;
+  }else {
+    return 0;
+  }
+}
+
 function getUserById($conn, $id)
 {
   $sql = "SELECT id,fname,username FROM users Where id = ?";

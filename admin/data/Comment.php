@@ -47,6 +47,20 @@ function likeCountByPostID($conn, $id)
     return $stmt->rowCount();
 }
 
+//is liked
+function isLikedByUserID($conn, $post_id,$user_id)
+{
+    $sql = "SELECT * FROM post_like WHere post_id = ? and like_by = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([$post_id,$user_id]);
+
+    if( $stmt->rowCount()>0){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
 function getCommentsByPostID($conn, $id)
 {
     $sql = "SELECT * FROM comment WHere post_id = ? Order by created_at desc";

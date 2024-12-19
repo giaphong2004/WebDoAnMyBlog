@@ -9,6 +9,7 @@
 </head>
 <body>
 <?php include 'inc/NavBar.php'; 
+
 ?>
 
 <div class="container mt-5">

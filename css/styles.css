@@ -26,7 +26,6 @@
 }
 .main-table {
 	width: 70%;
-    margin-left: 5%
 	
 }
 .comments .Comment span{
@@ -68,3 +67,6 @@
 
 }
 
+.react-btn .liked  {
+	color: #0088FF;
+}

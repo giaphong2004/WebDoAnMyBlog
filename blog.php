@@ -1,8 +1,13 @@
 <?php
  session_start();
  $logged =false;
- if(isset($_SESSION['user_id'])&& isset($_SESSION['username'])) 
+ $user_id = null;
+
+ if(isset($_SESSION['user_id'])&& isset($_SESSION['username'])) {
            $logged = true;
+          $user_id = $_SESSION['user_id'];
+
+        }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,9 +25,10 @@
       include_once "admin/data/Comment.php";
       include_once "db_conn.php";
       $posts = getAll($conn);
+      $categories = get5Categoies($conn);
 ?>
 
-<div class="container mt-5">
+<div class="container mt-4">
         <section class="d-flex">
         <?php if ($posts != 0) { ?>
             <main class="main-blog">
@@ -41,10 +47,26 @@
                     <hr>
                     <div class="d-flex justify-content-between">
                       <div class="react-btn">
-                      <i class="fa fa-thumbs-up like" aria-hidden="true"></i>Likes(
                         <?php
-                        echo likeCountByPostID($conn, $post['post_id']);
-                        ?>)
+                        
+                        $post_id = $post['post_id'];
+                        $liked = isLikedByUserID($conn, $post_id,$user_id);
+                          if($liked){
+                           
+                        ?>
+                         <i class="fa fa-thumbs-up liked like-btn"
+                            post-id="<?= $post_id ?>" 
+                            liked="1"
+                            aria-hidden="true"></i>
+                        <?php } else { ?>
+                      <i class="fa fa-thumbs-up like like-btn"
+                            post-id="<?= $post_id ?>" 
+                            liked="0"
+                            aria-hidden="true"></i>
+                        <?php } ?>
+                        Likes(
+                          <span class="like-count">
+                          <?php echo likeCountByPostID($conn, $post['post_id']); ?></span>)
                     <a href="blog-view.php?post_id=<?=$post['post_id']?>#comments">
                     <i class="fa fa-comments" aria-hidden="true"></i> Comments(
                       <?php
@@ -67,14 +89,44 @@
                 <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                   Category
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">Category 1</a>
-                <a href="#" class="list-group-item list-group-item-action">Category 2</a>
-                <a href="#" class="list-group-item list-group-item-action">Category 3</a>
-                <a class="list-group-item list-group-item-action disabled" aria-disabled="true">A disabled link item</a>
-</div>
+                <?php foreach($categories as $category){ ?>
+                <a href="#" class="list-group-item list-group-item-action"><?=$category['category']?></a>
+                <?php } ?>
+              </div>
             </aside>
         </section>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeButtons = document.querySelectorAll('.like-btn');
+        likeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const postId = this.getAttribute('post-id');
+                const liked = this.getAttribute('liked') === '1';
+                const likeCountSpan = this.parentElement.querySelector('.like-count');
+                let likeCount = parseInt(likeCountSpan.textContent);
+
+                if (liked) {
+                    this.classList.remove('liked');
+                    this.setAttribute('liked', '0');
+                    likeCount--;
+                } else {
+                    this.classList.add('liked');
+                    this.setAttribute('liked', '1');
+                    likeCount++;
+                }
+
+                likeCountSpan.textContent = likeCount;
+
+                // Send AJAX request to update like status in the database
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', 'php/update_like.php', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send(`post_id=${postId}&liked=${!liked}`);
+            });
+        });
+    });
+</script>
 </body>
 </html>

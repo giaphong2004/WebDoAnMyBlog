@@ -13,23 +13,22 @@
         <li class="nav-item">
           <a class="nav-link" href="blog.php">Blog</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Category
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Category1</a></li>
-            <li><a class="dropdown-item" href="#">Category2</a></li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link" href="category.php">Category</a>
         </li>
         <?php
           if($logged){
         ?>
-        <li class="nav-item" style="font-weight: 800; color: black;">
-          <a class="nav-link" href="profile.php">Heloo-<?=$_SESSION['username']?> </a>
-        </li>
-        <li class="nav-items"  >
-          <a class="nav-link" style="color:red; font-weight:600" href="logout.php">| Logout</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle " href="profile.php"
+             role="button" data-bs-toggle="dropdown"
+             aria-expanded="false">
+             <i class="fa fa-user" aria-hidden="true"></i> - <?=$_SESSION['username']?>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" 
+                   href="logout.php">Logout</a></li>
+          </ul>
         </li>
         <?php
           }else{ 
