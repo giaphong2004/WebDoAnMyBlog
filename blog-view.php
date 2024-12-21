@@ -23,7 +23,7 @@ if (isset($_GET['post_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - <?= htmlspecialchars($post['post_title']) ?></title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
@@ -31,6 +31,11 @@ if (isset($_GET['post_id'])) {
 <?php include 'inc/NavBar.php'; ?>
 
 <div class="container mt-4">
+     <!-- hiển thị search -->
+<h1 class="display-4 mb-4 fs-3 search-title">
+          <?php if(isset($_GET['search'])){
+              echo "Search <b> '" .htmlspecialchars($_GET['search'])."'</b>";} ?>
+        </h1>
     <section class="d-flex">
         <main class="main-blog">
             <div class="card main-block-card mb-3">

@@ -22,7 +22,7 @@
           echo "My Blog";
          } ?>
     </title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 </head>
@@ -42,12 +42,17 @@
      }
      $categories = get5Categories($conn);
   ?>
-      <!-- hiển thị search -->
-      <h1 class="display-4 mb-4 fs-3 search-title">
-        <?php if(isset($_GET['search'])){
-			       echo "Search <b> '" .htmlspecialchars($_GET['search'])."'</b>";} ?>
-      </h1>
+
+
+        
+    
+
 <div class="container mt-4">
+  <!-- hiển thị search -->
+<h1 class="display-4 mb-4 fs-3 search-title">
+          <?php if(isset($_GET['search'])){
+              echo "Search <b> '" .htmlspecialchars($_GET['search'])."'</b>";} ?>
+        </h1>
         <section class="d-flex">
         <?php if ($posts != 0) { ?>
             <main class="main-blog">

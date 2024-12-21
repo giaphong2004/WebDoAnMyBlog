@@ -43,9 +43,9 @@ function getById($conn, $id)
 
 //create search
 function search($conn, $key){
-  $sql = "SELECT * FROM post WHERE post_title LIKE ? OR post_text LIKE ?";
+  $sql = "SELECT * FROM post WHERE post_title LIKE ? ";
   $stmt = $conn->prepare($sql);
-  $stmt->execute(["%$key%", "%$key%"]);
+  $stmt->execute(["%$key%"]);
   if($stmt->rowCount() >= 1){
         $data = $stmt->fetchAll();
         return $data;
