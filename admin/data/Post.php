@@ -13,11 +13,23 @@ function getAll($conn)
     return 0;
   }
 }
+// getAllDeep admin
+function getAllDeep($conn){
+  $sql = "SELECT * FROM post";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
 
+  if($stmt->rowCount() >= 1){
+        $data = $stmt->fetchAll();
+        return $data;
+  }else {
+      return 0;
+  }
+} 
 //Get User By Id
 function getById($conn, $id)
 {
-  $sql = "SELECT * FROM post WHere post_id = ?";
+  $sql = "SELECT * FROM post WHere post_id = ? ";
   $stmt = $conn->prepare($sql);
   $stmt->execute([$id]);
 
@@ -29,8 +41,34 @@ function getById($conn, $id)
   }
 }
 
-//getbtidCategory
-//Get User By Id
+//create search
+function search($conn, $key){
+  $sql = "SELECT * FROM post WHERE post_title LIKE ? OR post_text LIKE ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute(["%$key%", "%$key%"]);
+  if($stmt->rowCount() >= 1){
+        $data = $stmt->fetchAll();
+        return $data;
+  }else {
+      return 0;
+  }
+}
+
+//Get All Post By Category
+function getAllPostsByCategory($conn, $category_id){
+  $sql = "SELECT * FROM post  WHERE category=? AND publish=1";
+   $stmt = $conn->prepare($sql);
+   $stmt->execute([$category_id]);
+
+   if($stmt->rowCount() >= 1){
+         $data = $stmt->fetchAll();
+         return $data;
+   }else {
+       return 0;
+   }
+}
+
+//get by id Category
 function getCategory($conn,$id){
   $sql = "SELECT * FROM category WHere id = ?";
   $stmt = $conn->prepare($sql);
@@ -43,10 +81,23 @@ function getCategory($conn,$id){
     return 0;
   }
 }
+// getById Deep - Admin
+function getByIdDeep($conn, $id){
+  $sql = "SELECT * FROM post WHERE post_id=?";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([$id]);
+
+  if($stmt->rowCount() >= 1){
+        $data = $stmt->fetch();
+        return $data;
+  }else {
+      return 0;
+  }
+}
 
 //Get all category
 function getAllCategory($conn){
-  $sql = "SELECT * FROM category";
+  $sql = "SELECT * FROM category ORDER BY category";
   $stmt = $conn->prepare($sql);
   $stmt->execute();
 
@@ -59,16 +110,30 @@ function getAllCategory($conn){
 }
 
 //get5Categoies
-function get5Categoies($conn){
-  $sql = "SELECT * FROM  category LIMIT 6";
+function get5Categories($conn){
+  $sql = "SELECT * FROM category LIMIT 5";
   $stmt = $conn->prepare($sql);
   $stmt->execute();
 
-  if($stmt->rowCount() >=1 ){
-    $data = $stmt->fetchAll();
-    return $data;
+  if($stmt->rowCount() >= 1){
+        $data = $stmt->fetchAll();
+        return $data;
   }else {
-    return 0;
+      return 0;
+  }
+}
+
+// getCategoryById
+function getCategoryById($conn, $id){
+  $sql = "SELECT * FROM category WHERE id=?";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute([$id]);
+
+  if($stmt->rowCount() >= 1){
+        $data = $stmt->fetch();
+        return $data;
+  }else {
+      return 0;
   }
 }
 

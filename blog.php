@@ -8,13 +8,20 @@
           $user_id = $_SESSION['user_id'];
 
         }
+        $notFound = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blog</title>
+    <title>
+    <?php if(isset($_GET['search'])){
+			 echo "Search '" .htmlspecialchars($_GET['search'])."'";
+		     }else{
+          echo "My Blog";
+         } ?>
+    </title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -24,16 +31,30 @@
       include_once "admin/data/Post.php";
       include_once "admin/data/Comment.php";
       include_once "db_conn.php";
-      $posts = getAll($conn);
-      $categories = get5Categoies($conn);
-?>
-
+      if(isset($_GET['search'])){
+        $key = $_GET['search'];
+        $posts = search($conn, $key);
+        if ($posts == 0) {
+            $notFound = 1;
+        }
+     }else {
+        $posts = getAll($conn);
+     }
+     $categories = get5Categories($conn);
+  ?>
+      <!-- hiển thị search -->
+      <h1 class="display-4 mb-4 fs-3 search-title">
+        <?php if(isset($_GET['search'])){
+			       echo "Search <b> '" .htmlspecialchars($_GET['search'])."'</b>";} ?>
+      </h1>
 <div class="container mt-4">
         <section class="d-flex">
         <?php if ($posts != 0) { ?>
             <main class="main-blog">
+              
               <?php foreach ($posts as $post) { ?>
             <div class="card main-block-card mb-3" >
+              
                 <img src="upload/blog/<?= $post['cover_url'] ?>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><?= $post['post_title'] ?> </h5>
@@ -83,14 +104,27 @@
             </div>
             <?php } ?>
             </main>
-            <?php } ?>
+            <?php }else { ?>
+  	   	<main class="main-blog p-2">
+  	   		<?php if($notFound){ ?>
+  	   			<div class="alert alert-warning"> 
+  	   				No search results found 
+  	   				<?php echo " - <b>key = '".htmlspecialchars($_GET['search'])."'</b>" ?>
+  	   			</div>
+  	   		<?php }else{ ?>
+  	   			<div class="alert alert-warning"> 
+  	   				No posts yet.
+  	   			</div>
+  	   		<?php } ?>
+  	   	</main>
+  	   <?php } ?>
             <aside class="aside-main">
             <div class="list-group category-aside">
                 <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
                   Category
                 </a>
                 <?php foreach($categories as $category){ ?>
-                <a href="#" class="list-group-item list-group-item-action"><?=$category['category']?></a>
+                <a href="category.php?category_id=<?=$category['id']?>" class="list-group-item list-group-item-action"><?=$category['category']?></a>
                 <?php } ?>
               </div>
             </aside>

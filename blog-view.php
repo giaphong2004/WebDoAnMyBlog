@@ -110,12 +110,14 @@ if (isset($_GET['post_id'])) {
         </main>
         <aside class="aside-main">
             <div class="list-group category-aside">
-                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">Category</a>
+                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                  Category
+                </a>
                 <?php foreach($categories as $category){ ?>
-                <a href="#" class="list-group-item list-group-item-action"><?=$category['category']?></a>
+                <a href="category.php?category_id=<?=$category['id']?>" class="list-group-item list-group-item-action"><?=$category['category']?></a>
                 <?php } ?>
-            </div>
-        </aside>
+              </div>
+            </aside>
     </section>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

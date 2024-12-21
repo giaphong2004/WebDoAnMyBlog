@@ -23,7 +23,7 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 		include_once "data/Post.php";
 		include_once "data/Comment.php";
 		include_once "../db_conn.php";
-		$posts = getAll($conn);
+		$posts = getAllDeep($conn);	
 
 		?>
 		<div class="main-table">
@@ -44,13 +44,13 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 
 					<?php if ($posts != 0) { ?>
 						<tr>
-							<th scope="col">ID</th>
-							<th scope="col">Title</th>
-							<th scope="col">Category</th>
-							<th scope="col">Comments</th>
-							<th scope="col">Likes</th>
-							<th scope="col">Action</th>
-						</tr>
+							<th scope="col">#</th>
+							<th>Title</th>
+							<th>Category</th>
+							<th>Comments</th>
+							<th>Likes</th>
+							<th>Action</th>
+		   				 </tr>
 					</thead>
 					<tbody>
 						<?php foreach ($posts as $post) {
@@ -73,16 +73,19 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 								</td>
 								<td><a href="post-delete.php?post_id=<?= $post['post_id'] ?>" class="btn btn-danger">Delete</a>
 									<a href="post-edit.php?post_id=<?= $post['post_id'] ?>" class="btn btn-warning">Edit</a>
-								</td>
-							</tr>
-						<?php } ?>
-					</tbody>
-				</table>
-			<?php } else { ?>
-				<div class="alert alert-warning">
-					No Post Found
-				</div>
-			<?php } ?>
+
+		      	<a href="post-publish.php?post_id=<?=$post['post_id'] ?>&publish=1" class="btn btn-link disabled ">Public</a>
+		      	<a href="post-publish.php?post_id=<?=$post['post_id'] ?>&publish=0" class="btn btn-link " >Private</a>
+		      </td>
+		    </tr>
+		    <?php } ?>
+		  </tbody>
+		</table>
+	<?php }else{ ?>
+		<div class="alert alert-warning">
+			Empty!
+		</div>
+	<?php } ?>
 		</div>
 		</section>
 		</div>

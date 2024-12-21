@@ -10,7 +10,7 @@
 }
 
 .main-blog{
-    width: 70%;
+    width: 60%;
 }
 
 .w-450 {
@@ -69,4 +69,7 @@
 
 .react-btn .liked  {
 	color: #0088FF;
+}
+.search-title{
+    margin: 50px 120px;
 }
