@@ -74,8 +74,6 @@ if (isset($_SESSION['admin_id']) && isset($_SESSION['username'])) {
 								<td><a href="post-delete.php?post_id=<?= $post['post_id'] ?>" class="btn btn-danger">Delete</a>
 									<a href="post-edit.php?post_id=<?= $post['post_id'] ?>" class="btn btn-warning">Edit</a>
 
-		      	<a href="post-publish.php?post_id=<?=$post['post_id'] ?>&publish=1" class="btn btn-link disabled ">Public</a>
-		      	<a href="post-publish.php?post_id=<?=$post['post_id'] ?>&publish=0" class="btn btn-link " >Private</a>
 		      </td>
 		    </tr>
 		    <?php } ?>

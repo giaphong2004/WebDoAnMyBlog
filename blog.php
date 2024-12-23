@@ -49,7 +49,7 @@
 
 <div class="container mt-4">
   <!-- hiển thị search -->
-<h1 class="display-4 mb-4 fs-3 search-title">
+<h1 class="display-4 mb-4 fs-3 search-title ">
           <?php if(isset($_GET['search'])){
               echo "Search <b> '" .htmlspecialchars($_GET['search'])."'</b>";} ?>
         </h1>
@@ -112,12 +112,12 @@
             <?php }else { ?>
   	   	<main class="main-blog p-2">
   	   		<?php if($notFound){ ?>
-  	   			<div class="alert alert-warning"> 
+  	   			<div class="alert alert-warning main-block-card mb-3"> 
   	   				No search results found 
   	   				<?php echo " - <b>key = '".htmlspecialchars($_GET['search'])."'</b>" ?>
   	   			</div>
   	   		<?php }else{ ?>
-  	   			<div class="alert alert-warning"> 
+  	   			<div class="alert alert-warning main-block-card mb-3"> 
   	   				No posts yet.
   	   			</div>
   	   		<?php } ?>

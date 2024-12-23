@@ -49,18 +49,6 @@ if (isset($key) && $key == "hhdsfs1263z") {
 					</a>
 				</li>
 				<li>
-					<a href="Message.php">
-						<i class="fa fa-inbox" aria-hidden="true"></i>
-						<span>Message</span>
-					</a>
-				</li>
-				<li>
-					<a href="Setting.php">
-						<i class="fa fa-cog" aria-hidden="true"></i>
-						<span>Setting</span>
-					</a>
-				</li>
-				<li>
 					<a href="../logout.php">
 						<i class="fa fa-power-off" aria-hidden="true"></i>
 						<span>Logout</span>

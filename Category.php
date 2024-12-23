@@ -33,7 +33,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
               echo "Blog Category Page";
            }
 		 ?> </title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 <body>
@@ -48,7 +48,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
         <section class="d-flex">
         <?php if (!isset($_GET['category_id'])) { ?>
   	   <main class="main-blog p-2">
-  	   	  <div class="list-group category-aside">
+  	   	  <div class="list-group category-main">
   	   	  	 <?php foreach ($categories as $category) {?>
 			  <a href="category.php?category_id=<?=$category['id']?>" 
 			     class="list-group-item list-group-item-action">
@@ -64,7 +64,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 	<?php if ($posts != 0) { ?>
    <main class="main-blog">
    	<?php foreach ($posts as $post) { ?>
-   	   <div class="card main-blog-card mb-5">
+   	   <div class="card main-block-card mb-3">
 	  <img src="upload/blog/<?=$post['cover_url']?>" class="card-img-top" alt="...">
 	  <div class="card-body">
 	    <h5 class="card-title"><?=$post['post_title']?></h5>
@@ -76,7 +76,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 	    <a href="blog-view.php?post_id=<?=$post['post_id']?>" class="btn btn-primary">Read more</a>
 	    <hr>
         <div class="d-flex justify-content-between">
-        	<div class="react-btns">
+        	<div class="react-btn">
     		<?php 
     		$post_id = $post['post_id'];
     		if ($logged) {
@@ -109,7 +109,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 		        )
 		    </a>	
 		    </div>	
-		    <small class="text-body-secondary"><?=$post['crated_at']?></small>
+		    <small class="text-body-secondary"><?=$post['created_date']?></small>
         </div>	
 	    
 	  </div>
@@ -118,7 +118,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
    </main>
   	<?php }else {?> 
   		<main class="main-blog p-2">
-	  		<div class="alert alert-warning">
+	  		<div class="alert alert-warning card main-block-card mb-3">
 	  			No posts yet.
 	  		</div>
   	    </main>
