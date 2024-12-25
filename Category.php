@@ -47,7 +47,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['username'])) {
 
         <section class="d-flex">
         <?php if (!isset($_GET['category_id'])) { ?>
-  	   <main class="main-blog p-2">
+  	   <main class="main-blog ">
   	   	  <div class="list-group category-main">
   	   	  	 <?php foreach ($categories as $category) {?>
 			  <a href="category.php?category_id=<?=$category['id']?>" 
